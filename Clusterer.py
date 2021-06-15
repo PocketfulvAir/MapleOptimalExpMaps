@@ -60,7 +60,7 @@ class Clusterer:
 
     def predict(self, horizontal, vertical):
         predictions = self.model.predict([[horizontal,vertical]])
-        return predictions
+        return predictions[0]
 
     def cluster(self):
         predictions = self.model.predict(self.data_use)
@@ -69,7 +69,9 @@ class Clusterer:
         for cluster in clusters:
             group_clusters[cluster] = self.data_purge[predictions == cluster]
         self.clusters = group_clusters
-        
+       
+    def within(self, target):
+        return self.clusters[target]
 
 if __name__ == "__main__":
     clusterer = Clusterer(n_clusters=10)
@@ -80,5 +82,5 @@ if __name__ == "__main__":
     clusterer.cluster()
     tester = clusterer.predict(7,3)
     print(tester)
-    print(clusterer.clusters[tester[0]])
+    print(clusterer.within(tester))
 

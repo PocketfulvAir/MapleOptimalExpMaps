@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>80d46983-f365-4d99-9614-a82373e1d934</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Clusterer.py</StartupFile>
+    <StartupFile>MapleOpt.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -25,6 +25,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MapleOpt.py" />
+    <Compile Include="EXPModifier.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="mapdata.xlsx" />
