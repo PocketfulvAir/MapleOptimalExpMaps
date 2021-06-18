@@ -28,6 +28,9 @@
     <Compile Include="EXPModifier.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Optimizer.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="mapdata.xlsx" />

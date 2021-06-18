@@ -40,11 +40,15 @@ class Clusterer:
     def maple_clean(self):
         columns = np.array(self.data.columns)
         filter = [0,8,9,10,11,12]
+        lvl_filter = [0,5]
         df_purge = self.data.dropna()
+        df_lvl = df_purge[columns[lvl_filter]]
         df_purge = df_purge[columns[filter]]
+        df_lvl = df_lvl.groupby(list(columns[[0]]),sort=False).mean().reset_index()
+        df_lvl = df_lvl.astype({'mob_level': 'int32'})
         self.data_purge = df_purge.groupby(list(columns[filter[:4]]),sort=False).sum().reset_index()
+        self.data_purge = pd.merge(self.data_purge, df_lvl, on='map_name')
         self.data_use = self.data_purge[[columns[8],columns[9]]]
-        
 
     def fit(self):
         self.model.fit(self.data_use)
@@ -77,10 +81,10 @@ if __name__ == "__main__":
     clusterer = Clusterer(n_clusters=10)
     clusterer.read_sheet("mapdata.xlsx", "Map Data")
     clusterer.maple_clean()
-    clusterer.check_usability()
-    clusterer.fit()
-    clusterer.cluster()
-    tester = clusterer.predict(7,3)
-    print(tester)
-    print(clusterer.within(tester))
+    #clusterer.check_usability()
+    #clusterer.fit()
+    #clusterer.cluster()
+    #tester = clusterer.predict(7,3)
+    #print(tester)
+    #print(clusterer.within(tester))
 

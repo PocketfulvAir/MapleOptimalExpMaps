@@ -85,7 +85,12 @@ class EXPModifier:
         for i in range(size):
             exps[i] = round(exps[i] * (1 - (self.wide_penalty(widths[i]) / 100)))
 
-
+    def apply_level_modifier(self, char_lvl, exps):
+        lvls = self.data['mob_level'].tolist()
+        size = len(lvls)
+        for i in range(size):
+            exps[i] = round(exps[i] * (1 + (self.level_bonus(char_lvl, lvls[i]) / 100)))
+        
 if __name__ == "__main__":
     a = EXPModifier()
     for i in range(1,40):
